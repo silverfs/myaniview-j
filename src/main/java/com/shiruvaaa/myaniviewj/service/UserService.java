@@ -6,8 +6,10 @@ import com.shiruvaaa.myaniviewj.model.User;
 import com.shiruvaaa.myaniviewj.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,6 +37,26 @@ public class UserService {
             return authResponse;
         } else {
             return null;
+        }
+    }
+
+    @Transactional
+    public void updateUser(int id, String username, String password, String anilistname) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("user with id: " + id + " not found!"));
+        if(username != null &&
+                username.length() > 0 &&
+                !Objects.equals(user.getUsername(), username)) {
+            user.setUsername(username);
+        }
+        if(password != null &&
+                password.length() > 0 &&
+                !Objects.equals(user.getPassword(), password)) {
+            user.setPassword(password);
+        }
+        if(anilistname != null &&
+                !Objects.equals(user.getAnilistname(), anilistname)) {
+            user.setAnilistname(anilistname);
         }
     }
 }
