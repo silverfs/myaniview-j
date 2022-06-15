@@ -14,6 +14,7 @@ public class User {
     public int id;
     public String username;
     public String password;
+    public String anilistname;
     public LocalDateTime createdAt;
     public LocalDateTime updatedAt;
 
@@ -44,6 +45,14 @@ public class User {
         this.password = password;
     }
 
+    public String getAnilistname() {
+        return anilistname;
+    }
+
+    public void setAnilistname(String anilistname) {
+        this.anilistname = anilistname;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -60,10 +69,11 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    public User(int id, String username, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(int id, String username, String password, String anilistname, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.anilistname = anilistname;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -74,6 +84,7 @@ public class User {
                 "id=" + id +
                 ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", anilistname='" + anilistname + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
